@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <button @click.prevent="notifyUser">Test moi</button>
+
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -11,6 +13,7 @@
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
     </ul>
+
     <h3>Essential Links</h3>
     <ul>
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
@@ -31,11 +34,33 @@
 </template>
 
 <script>
+import {ToastService} from "@/mixins/ToastService";
+
 export default {
   name: 'HelloWorld',
+  mixins: [ToastService],
   props: {
-    msg: String
-  }
+    msg: String,
+    userTitle: {
+      type: String,
+      default: 'no-name',
+    }
+  },
+  data() {
+    return {
+      d: null,
+    }
+  },
+  created() {
+  },
+  mounted() {
+    this.notifyUser();
+  },
+  methods: {
+    notifyUser(){
+      this.AppToast.success('Salut ' + this.userTitle);
+    }
+  },
 }
 </script>
 
