@@ -14,6 +14,7 @@
         <input type="text" class="form-control"
                v-model="query"
                @keyup.enter="search"
+
                :disabled="loading"
                :placeholder="defaultPlaceholder"
                :aria-label="defaultPlaceholder">
