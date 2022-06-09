@@ -1,6 +1,11 @@
 import {User} from "@/classes/User";
+import LocationsService from "@/services/LocationsService";
 
 class UsersService {
+
+    constructor() {
+        this.locationService = LocationsService;
+    }
 
     async setCurrentUser(user) {
         if (user === undefined) {
